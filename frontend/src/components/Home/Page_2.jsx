@@ -1,7 +1,5 @@
 import { useRef } from "react";
-import { motion, useScroll,useTransform
-
- } from "motion/react";
+import { motion, useScroll,useTransform} from "motion/react";
 import page2Image from "../../assets/images/page_2.webp";
 
 
@@ -12,13 +10,14 @@ function Page_2() {
     offset: ["start end", "end start"],
   });  
   const y = useTransform(scrollYProgress, [0, 1], [-200, 200]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1.2,1]);
 
 
   return (
     <>
       <div className="w-full h-screen overflow-hidden" ref={ref} >
         <motion.img
-        style={{ y }}
+        style={{ y , scale }}
         
           className=" h-full w-full object-cover z-10"
           src={page2Image}
