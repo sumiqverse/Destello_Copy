@@ -1,9 +1,9 @@
 import React from "react";
 import { motion } from "motion/react";
 
-function Destello() {
+function Page_1() {
   return (
-    <div className="flex flex-col w-full h-[80%] relative">
+    <div className="flex flex-col w-full h-[80vh] relative">
       <div className="flex flex-row gap-4 w-[85%] p-10 relative">
         <h3 className="w-50 absolute left-12 top-30 ">
           Designing striking visions and digital worlds for iconic brands.
@@ -23,4 +23,4 @@ function Destello() {
   );
 }
 
-export default Destello;
+export default Page_1;

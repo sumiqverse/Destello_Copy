@@ -7,6 +7,14 @@ import Page4img5 from "../../assets/images/Page4img5.avif";
 import Page4img6 from "../../assets/images/Page4img6.avif";
 import Page4img7 from "../../assets/images/Page4img7.avif";
 import Page4img8 from "../../assets/images/Page4img8.avif";
+import Page4img11 from "../../assets/images/Page4img11.avif";
+import Page4img21 from "../../assets/images/Page4img21.avif";
+import Page4img31 from "../../assets/images/Page4img31.avif";
+import Page4img41 from "../../assets/images/Page4img41.avif";
+import Page4img51 from "../../assets/images/Page4img51.avif";
+import Page4img61 from "../../assets/images/Page4img61.avif";
+import Page4img71 from "../../assets/images/Page4img71.avif";
+import Page4img81 from "../../assets/images/Page4img81.avif";
 
 
 const Page_4 = () => {
@@ -15,6 +23,7 @@ const Page_4 = () => {
       title: "Spin Rally",
       details: ["Art Direction", "Social Media", "Content"],
       img: Page4img1,
+      subimg: Page4img11
     },
     {
       title: "Valvet Frame",
@@ -25,11 +34,13 @@ const Page_4 = () => {
         "Brand Experience",
       ],
       img: Page4img2,
+      subimg: Page4img21
     },
     {
       title: "Shoreline",
       details: ["Photography", "Content", "Social Media"],
       img: Page4img3,
+      subimg: Page4img31
     },
     {
       title: "LuminEdge",
@@ -40,31 +51,36 @@ const Page_4 = () => {
         "Creative Direction",
       ],
       img: Page4img4,
+      subimg: Page4img41
     },
     {
       title: "Pulse Narrative",
       details: ["Content", "Strategy", "Motion Design"],
       img: Page4img5,
+      subimg: Page4img51
     },
     {
       title: "Royal Radiance",
       details: ["Photography", "Art Direction", "Visual Strategy","Content"],
       img: Page4img6,
+      subimg: Page4img61
     },
     {
       title: "Starry Sky",
       details: ["Creative Director", "Photography", "Visual Editor"],
       img: Page4img7,
+      subimg: Page4img71
     },
     {
       title: "AeroDrive",
       details: ["Campaign Development", "Branding", "Creative Direction","Marketing"],
       img: Page4img8,
+      subimg: Page4img81
     },
   ];
   
   return (
-    <div className="w-full flex flex-col items-center h-[400vh] bg-[#f0f0f0] relative">
+    <div className="w-full flex flex-col items-center h-auto py-24 bg-[#f0f0f0] relative">
       <div className=" w-full h-70 relative text-[#262626]">
         <h1 className="text-7xl absolute font-[450] bottom-12 left-10">
           Selected works
@@ -72,7 +88,7 @@ const Page_4 = () => {
         <button className='absolute bottom-12 right-10 text-2xl'>See all works</button>
       </div>
       <div className="w-full flex">
-        <aside className="sticky top-20 pb-200 w-[25%] pl-7">
+        <aside className="sticky top-20 w-[25%] pl-7 h-fit">
           <div className="flex flex-col gap-14">
             <h1 className="text-[#989898]">Index</h1>
             <ul className="flex flex-col gap-1.5">
@@ -87,12 +103,13 @@ const Page_4 = () => {
           </div>
         </aside>
 
-        <div className="flex flex-wrap gap-4 gap-x-5 w-[75%]">
+        <div className="flex flex-wrap gap-y-8 justify-between pr-7 w-[75%]">
           {selectedWorks.map((work, index) => {
             return (
               <Page_4Cards
                 key={index}
                 Page4img={work.img}
+                Page4subimg={work.subimg}
                 Title={work.title}
                 Details={work.details}
               />

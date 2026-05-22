@@ -1,0 +1,253 @@
+import { useRef } from "react";
+import { motion, useMotionValue, useSpring } from "motion/react";
+
+export default function MagneticCard({ Page4img, Page4subimg, Title, Details = [] }) {
+  // 1. THE ANCHOR (Sticky note for the computer to locate this specific card)
+  const cardRef = useRef(null);
+
+  // 2. THE RAW COORDINATE TRACKERS (Fast variables for the mouse offset pixels)
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // 3. THE RUBBER BAND PHYSICS (Turns robotic coordinates into heavy, elastic movement)
+  const springOptions = { damping: 15, stiffness: 150, mass: 0.6 };
+  const elasticMouseX = useSpring(mouseX, springOptions);
+  const elasticMouseY = useSpring(mouseY, springOptions);
+
+  // 4. THE CALCULATOR (Runs every single millisecond the mouse crawls over the frame)
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+
+    // Get the cursor's current spot on the monitor screen grid
+    const { clientX, clientY } = e;
+
+    // Measure the card container's edges on that same screen grid
+    const { left, top, width, height } = cardRef.current.getBoundingClientRect();
+
+    // Calculate the dead-center point of the card
+    const centerX = left + width / 2;
+    const centerY = top + height / 2;
+
+    // Measure the pixel gap between the cursor and the card's dead center
+    const distanceX = clientX - centerX;
+    const distanceY = clientY - centerY;
+
+    // Pull intensity factor (0.3 = the card moves 30% of the total distance)
+    const magneticStrength = 0.3;
+
+    // Update our trackers with the math results
+    mouseX.set(distanceX * magneticStrength);
+    mouseY.set(distanceY * magneticStrength);
+  };
+
+  // 5. THE SNAP RESET (When the mouse leaves, snap the rubber band back to center zero)
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
+  return (
+    // THE OUTERMOST CONTAINER (Handles the layout block sizing)
+    <div className="flex flex-col h-[85vh] w-[48%]">
+      
+      {/* THE IMAGE FRAME: This stays rock-solid in place to act as our stable math grid */}
+      <motion.div
+        ref={cardRef}
+        whileHover="hover"
+        onMouseMove={handleMouseMove}   // Keeps the sensor attached to the stable frame
+        onMouseLeave={handleMouseLeave} // Resets positions cleanly when leaving the frame
+        className="relative grow w-full rounded-2xl overflow-hidden cursor-pointer flex items-center justify-center"
+      >
+        {/* LAYER 1: Background Image (Zooms in and fogs up on hover) */}
+        <motion.div
+          className="h-full w-full rounded-2xl overflow-hidden absolute inset-0"
+          style={{
+            backgroundImage: `url(${Page4img})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+          initial={{ scale: 1.3, filter: "blur(0px)" }}
+          variants={{
+            hover: {
+              scale: 1.45,
+              filter: "blur(6px)",
+            },
+          }}
+          transition={{ duration: 0.4 }}
+        />
+
+        {/* LAYER 2: Amber Card Container (Only this single element shifts magnetically) */}
+        <motion.div
+          style={{ x: elasticMouseX, y: elasticMouseY }} // Hooked to the rubber band math
+          initial={{ opacity: 0, scale: 0.4 }}
+          variants={{
+            hover: {
+              opacity: 1,
+              scale: 1,
+            },
+          }}
+          transition={{ duration: 0.4 }}
+          className="absolute rounded-xl w-[45%] bg-amber-400 h-[55%] overflow-hidden flex items-center justify-center z-10"
+        >
+          {/* LAYER 3: Inner Image (Counter-scales down to cheat the eye and stay same size) */}
+          <motion.img
+            initial={{ scale: 2.5 }} // Perfect inverse math (1 / 0.4) to stay perfectly still
+            variants={{
+              hover: {
+                scale: 1,
+              },
+            }}
+            transition={{ duration: 0.4 }}
+            className="object-cover h-full w-full"
+            src={Page4subimg}
+            alt=""
+          />
+        </motion.div>
+      </motion.div>
+
+      {/* TEXT DETAILS SECTION (Untouched by animations, sitting safely below) */}
+      <div className="flex justify-between items-start pt-4 px-1 w-full min-h-[10vh]">
+        <h2 className="text-[#262626] font-medium text-3xl max-w-[70%] leading-tight">
+          {Title}
+        </h2>
+        <ul className="flex flex-col gap-0.5 text-[#878787] text-sm text-right">
+          {Details.map((detail, index) => (
+            <li key={index}>{detail}</li>
+          ))}
+        </ul>
+      </div>
+
+    </div>
+  );
+}
+
+
+
+================================================================================
+          THE MATHEMATICAL LOGIC BEHIND THE MAGNETIC EFFECT EFFECT
+================================================================================
+
+[STEP 1: LOCATING THE BOX ON THE MONITOR GRID]
+--------------------------------------------------------------------------------
+Before the code can calculate any pull, it must find exactly where your image frame 
+is pinned on your monitor screen. The computer treats your viewport screen as a 
+giant graph paper grid measured in pixels.
+
+When the mouse moves over the frame, the browser runs this command:
+-> cardRef.current.getBoundingClientRect()
+
+This scans the monitor grid and pulls out 4 specific numbers:
+* top:   The pixel row where the top edge of the card sits.
+* left:  The pixel column where the left edge of the card sits.
+* width: The total horizontal size of the box in pixels.
+* height:The total vertical size of the box in pixels.
+
+Let's use clean, imaginary numbers to visualize the math:
+* left   = 100px  (The box starts 100 pixels away from the left edge of the screen)
+* top    = 100px  (The box starts 100 pixels down from the top edge of the screen)
+* width  = 200px  (The box spans 200 pixels wide)
+* height = 200px  (The box spans 200 pixels high)
+
+
+[STEP 2: FINDING THE DEAD CENTER AXIS]
+--------------------------------------------------------------------------------
+A magnetic field needs a central core to pull toward. To find the dead-center 
+coordinate of our box, we apply basic school geometry:
+
+-> centerX = left + (width / 2)
+   centerX = 100  + (200 / 2)   => 200px on the horizontal X-axis.
+
+-> centerY = top + (height / 2)
+   centerY = 100  + (200 / 2)   => 200px on the vertical Y-axis.
+
+Result: The computer now marks coordinate (200, 200) as the exact target core.
+
+
+[STEP 3: MEASURING THE GAP DELTA]
+--------------------------------------------------------------------------------
+Your mouse cursor acts as a roaming coordinate on that same graph paper grid. 
+Let's look at what happens when you slide your hand over to coordinate (250, 200).
+
+The script instantly calculates the physical distance gap between your hand and 
+the box core:
+
+-> distanceX = MouseX - centerX
+   distanceX = 250    - 200     => +50 pixels (Mouse is 50px to the right)
+
+-> distanceY = MouseY - centerY
+   distanceY = 200    - 200     => 0 pixels (Mouse is perfectly centered vertically)
+
+
+[STEP 4: APPLYING THE PULL STRENGTH FRACTION]
+--------------------------------------------------------------------------------
+If we told the amber card to shift by the full 50 pixels, it would jump and lock 
+directly underneath your cursor tip. That isn't a magnet effect—that's just a 
+custom cursor replacement.
+
+To make the card "lean" instead of teleporting, we multiply that gap distance 
+by a strength factor fraction (e.g., 0.3 or 30%):
+
+-> Final Target X = distanceX * magneticStrength
+   Final Target X = 50        * 0.3           => +15 pixels
+
+The logic tells the system: "Shift the amber card exactly 15 pixels to the right." 
+As your cursor pulls further away, the gap widens, and the card leans further out.
+
+
+[STEP 5: THE PHYSICS ENGINE OVERLAY (USESPRING)]
+--------------------------------------------------------------------------------
+If we executed Step 4 raw, the card would jump rigidly to 15 pixels. It would look 
+stiff and digital. To make it organic, Framer Motion processes that "15px" value 
+through a real physics simulation engine.
+
+Imagine hooking a thick, physical rubber band between the static center of the box 
+and your new "15px" target destination point:
+
+1. Your mouse slides -> The target point shifts instantly to 15px.
+2. The rubber band stretches tight.
+3. The amber box has "mass" (weight), meaning it suffers from inertia and takes 
+   a split second to start moving.
+4. The rubber band snaps forward, pulling the box. Because of its weight and speed, 
+   the box flies right past 15px up to 16.5px (it overshoots).
+5. The rubber band tightens in reverse to pull it back, acting as a brake (damping).
+6. The box stabilizes cleanly right on 15px with a beautiful, elastic wobble.
+
+These calculations process 60 to 120 times every single second, creating an illusion 
+of weight and magnetic pull under your palm.
+
+
+================================================================================
+                  TRANSLATING THE CORE PROGRAMMING CODES
+================================================================================
+
+* ref (Reference)
+  A digital sticky note. We place this tag on an HTML element so our background math 
+  functions can easily point to it and look up its dimensions.
+
+* onMouseMove
+  An ultra-sensitive movement radar hook. It executes your layout math logic 
+  continuously every single time your mouse pixel changes coordinates.
+
+* whileHover="hover"
+  The master command radio. When your mouse breaks the outer boundary, this property 
+  broadcasts an alert down to every single nested child layer saying: 
+  "Transition into your hover design rules immediately!"
+
+* initial
+  The exact CSS styles applied to a layer the very first millisecond the browser 
+  renders the webpage (e.g., hidden, small, crisp).
+
+* variants
+  A split menu of clean visual milestones. Instead of mixing code, we define a 
+  "normal state blueprint" and a "hover state blueprint" for our elements.
+
+* scale
+  The size multiplier. 1 is normal scale. 1.45 means zoomed in by 45%. 0.4 means 
+  shrunken down to less than half size.
+
+* Counter-Scale (The Eye Illusion)
+  Imagine moving a magnifying glass closer to your face (making things look bigger), 
+  while simultaneously sliding the paper underneath it away from you at the exact 
+  same velocity. The text looks completely motionless. That is why your inner image 
+  appears rock-solid while its frame scales around it!
+================================================================================

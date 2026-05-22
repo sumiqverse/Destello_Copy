@@ -1,6 +1,6 @@
 import React, { use } from 'react'
 import Nav from '../components/Home/Nav'
-import Destello from '../components/Home/Destello'
+import Page_1 from '../components/Home/Page_1'
 import Page_2 from '../components/Home/Page_2';
 import Page_3 from '../components/Home/Page_3';
 import Page_4 from '../components/Home/Page_4';
@@ -11,9 +11,9 @@ function Home() {
 
 
   return (
-    <div className="bg-[#f0f0f0] h-screen w-full font-mona text-[#262626]">
+    <div className="bg-[#f0f0f0] min-h-screen w-full font-mona text-[#262626]">
       <Nav />
-      <Destello />
+      <Page_1 />
       <Page_2 />
       <Page_3 />
       <Page_4 />
