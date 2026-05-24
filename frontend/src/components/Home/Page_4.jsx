@@ -80,7 +80,7 @@ const Page_4 = () => {
   ];
   
   return (
-    <div className="w-full flex flex-col items-center h-auto py-24 bg-[#f0f0f0] relative">
+    <div className="min-w-full flex flex-col items-center h-auto py-24 bg-[#f0f0f0] relative">
       <div className=" w-full h-70 relative text-[#262626]">
         <h1 className="text-7xl absolute font-[450] bottom-12 left-10">
           Selected works
@@ -117,7 +117,7 @@ const Page_4 = () => {
           })}
         </div>
       </div>
-      <hr className=" text-[#dad8d8]  absolute bottom-0 w-[95%] " />
+      <hr className=" text-[#c6c5c5]  absolute bottom-0 w-[97%] " />
     </div>
   );
 }
