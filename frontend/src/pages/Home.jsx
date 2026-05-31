@@ -6,7 +6,9 @@ import Page_3 from '../components/Home/Page_3';
 import Page_4 from '../components/Home/Page_4';
 import MarqueLogo from '../components/Home/MarqueLogo';
 import Page_5 from '../components/Home/Page_5';
+import Page_6 from '../components/Home/Page_6';
 import { useScroll } from 'motion/react';
+import Page_7 from '../components/Home/Page_7';
 
 function Home() {
 
@@ -20,6 +22,8 @@ function Home() {
       <Page_4 />
       <MarqueLogo />
       <Page_5 />
+      <Page_6 />
+      <Page_7 />
     </div>
   );
 }

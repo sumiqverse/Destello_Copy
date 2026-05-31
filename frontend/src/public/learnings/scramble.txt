@@ -1,0 +1,37 @@
+const glitchChars = 'DESTELLOdestello';
+    const targetText =
+      "We bring bold visions to life through a fusion of strategy, design, and storytelling. We partner with brands, founders, and creators to shape identities.";
+    const [displayedText, setDisplayedText] = useState(targetText);
+    const iterationRef = useRef(0);
+    const intervalRef = useRef(null);
+    const hasAnimatedRef = useRef(false);
+
+    const startGlitchAnimation = () => {
+      if (hasAnimatedRef.current) return; 
+      hasAnimatedRef.current = true;
+
+      iterationRef.current = 0;
+      if(intervalRef.current) clearInterval(intervalRef.current);
+
+      intervalRef.current = setInterval(() => {
+        const scrambledText = targetText
+        .split('')
+        .map((char,index) => {
+          if(index < iterationRef.current) {
+            return targetText[index];
+          }
+          if(char === ' ') return ' ';
+          return glitchChars[Math.floor(Math.random() * glitchChars.length)];
+        })
+        .join("");
+
+        setDisplayedText(scrambledText);
+
+        if(iterationRef.current >= targetText.length) {
+          clearInterval(intervalRef.current);
+          setDisplayedText(targetText);
+        }
+
+        iterationRef.current += 1;
+      }, 15);
+    }
