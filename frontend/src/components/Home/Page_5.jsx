@@ -74,7 +74,7 @@ const Page_5 = () => {
     isAnimate.current = true;
     intervalRef.current = setInterval(() => {
       setCurrentSubImage((prevIndex) => (prevIndex + 1) % subImages.length);
-    },200)
+    },350)
 
   }
   const stopSlideShow = () => {

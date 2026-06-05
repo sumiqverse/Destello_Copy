@@ -80,7 +80,7 @@ const Page_6 = () => {
   }, [currentIndex, page6Details.length]);
 
   return (
-    <div className="min-h-[600vh] bg-[#FEFEFE]" ref={containerRef}>
+    <div className="min-h-[600vh] bg-[#f0f0f0]" ref={containerRef}>
       <div
         style={{
           gridTemplateColumns: "1fr 2fr",
@@ -107,12 +107,16 @@ const Page_6 = () => {
               </AnimatePresence>
             </div>
             <div className="w-2 h-16 bg-gray-300  my-2 justify-center flex overflow-hidden rounded-full">
-              <div className={`w-4 bg-[#282828] rounded-full`} style={{
-                height: scroll,
-              }}></div>
+              <div
+                className={`w-4 bg-[#282828] rounded-full`}
+                style={{
+                  height: scroll,
+                }}
+              ></div>
             </div>
             <span
-              className={`text-lg font-medium ${progress >= 0.999 ? "text-black" : "text-gray-400"}`}>
+              className={`text-lg font-medium ${progress >= 0.999 ? "text-black" : "text-gray-400"}`}
+            >
               0{page6Details.length}
             </span>
           </div>
@@ -186,7 +190,7 @@ const Page_6 = () => {
                         exit={{
                           opacity: 0,
                           y: -20,
-                          scale: 1.,
+                          scale: 1,
                           filter: "blur(10px)",
                         }}
                         transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
@@ -207,7 +211,9 @@ const Page_6 = () => {
           </div>
         </div>
       </div>
+      
     </div>
+    
   );
 }
 
