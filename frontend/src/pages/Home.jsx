@@ -1,4 +1,6 @@
 import React, { use } from 'react'
+import page3 from "../assets/images/Page3.avif";
+import page8img from "../assets/images/Page8img.avif";
 import Nav from '../components/Home/Nav'
 import Page_1 from '../components/Home/Page_1'
 import Page_2 from '../components/Home/Page_2';
@@ -18,12 +20,13 @@ function Home() {
       <Nav />
       <Page_1 />
       <Page_2 />
-      <Page_3 />
+      <Page_3 page3={page3} />
       <Page_4 />
       <MarqueLogo />
       <Page_5 />
       <Page_6 />
       <Page_7 />
+      <Page_3 page3={page8img} />
     </div>
   );
 }

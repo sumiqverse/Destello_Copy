@@ -1,9 +1,8 @@
 import { useRef } from "react";
-import page3 from "../../assets/images/Page3.avif";
 import { motion,useScroll,useTransform  } from "motion/react";
 
 
-const Page_3 = () => {
+const Page_3 = ({page3}) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
