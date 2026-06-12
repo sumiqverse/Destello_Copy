@@ -11,6 +11,7 @@ import Page_5 from '../components/Home/Page_5';
 import Page_6 from '../components/Home/Page_6';
 import { useScroll } from 'motion/react';
 import Page_7 from '../components/Home/Page_7';
+import Page_8 from '../components/Home/Page_8';
 
 function Home() {
 
@@ -26,6 +27,7 @@ function Home() {
       <Page_5 />
       <Page_6 />
       <Page_7 />
+      <Page_8 />
       <Page_3 page3={page8img} />
     </div>
   );

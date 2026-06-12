@@ -6,9 +6,9 @@ import Page72 from '../../assets/images/Page72.avif'
 
 const Page_7 = () => {
   return (
-    <div className="min-h-screen w-full bg-[#f0f0f0] flex items-center flex-col">
-      <hr className=" text-[#d4d1d1] w-[97%] mt-20 " />
-      <div className="w-full h-[5vh] mt-4 flex justify-between px-8">
+    <div className="min-h-screen w-full bg-[#f0f0f0] flex items-center flex-col px-8">
+      <hr className=" text-[#d4d1d1] w-full mt-20 " />
+      <div className="w-full h-[5vh] mt-4 flex justify-between">
         <h2>Why Choose us</h2>
         <div className="flex items-center gap-1 cursor-pointer">
           <h1 className="text-2xl">Let's talk</h1>
@@ -16,7 +16,7 @@ const Page_7 = () => {
         </div>
       </div>
       <div
-        className="w-full h-[70vh] grid p-8 gap-4 mt-14"
+        className="w-full h-[70vh] grid gap-4 mt-14"
         style={{
           gridTemplateColumns: "1fr 1fr 1fr 1fr",
           gridTemplateRows: "1fr",
@@ -87,11 +87,7 @@ const Page_7 = () => {
           </div>
         </div>
       </div>
-      <p className="indent-90 text-7xl tracking-tight text-neutral-800 leading-20 p-8">
-        Real words from brands we've partnered with and brought to life through
-        creativity, strategy, and meaningful brand experiences that leave a
-        lasting impression.
-      </p>
+      
     </div>
   );
 }
