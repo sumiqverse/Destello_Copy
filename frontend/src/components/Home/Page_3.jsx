@@ -14,15 +14,18 @@ const Page_3 = ({page3}) => {
 
     
   return (
-    <div className="w-full h-auto bg-[#f0f0f0] ">
+    <div className="w-full min-h-screen bg-[#f0f0f0] flex items-center justify-center py-10">
       <motion.div
-      ref={ref}
-      initial={{  scale: 0.8 }}
-      style={{ scale }}
-      className="rounded-2xl w-[98%] m-auto overflow-hidden  ">
+        ref={ref}
+        initial={{ scale: 0.8 }}
+        style={{ scale }}
+        className="rounded-2xl w-[98%] m-auto overflow-hidden">
         <motion.img
-        style={{scale:scaleImage, y}} 
-        className="w-full h-full object-cover" src={page3} alt="Page 3" />
+          style={{ scale: scaleImage, y }}
+          className="w-full h-full object-cover"
+          src={page3}
+          alt="Page 3"
+        />
       </motion.div>
     </div>
   );

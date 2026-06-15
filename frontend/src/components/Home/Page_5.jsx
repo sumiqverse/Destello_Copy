@@ -129,7 +129,7 @@ const Page_5 = () => {
     );
   }
   return (
-    <div className="min-w-full min-h-screen bg-[#272727] relative flex flex-col items-center py-25">
+    <div className="min-w-full min-h-screen bg-[#272727] relative flex flex-col items-center py-25 ">
       <img
         className="absolute object-cover object-center top-0 z-4 h-full w-full opacity-5"
         src={Bg}

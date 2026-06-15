@@ -12,24 +12,34 @@ import Page_6 from '../components/Home/Page_6';
 import { useScroll } from 'motion/react';
 import Page_7 from '../components/Home/Page_7';
 import Page_8 from '../components/Home/Page_8';
+import Page_9 from '../components/Home/Page_9';
+import Page_10 from "../components/Home/Page_10";
+import FooterMarque from '../components/Home/FooterMarque';
 
 function Home() {
 
 
   return (
-    <div className="bg-[#f0f0f0] min-h-screen w-full font-mona text-[#262626]">
-      <Nav />
-      <Page_1 />
-      <Page_2 />
-      <Page_3 page3={page3} />
-      <Page_4 />
-      <MarqueLogo />
-      <Page_5 />
-      <Page_6 />
-      <Page_7 />
-      <Page_8 />
-      <Page_3 page3={page8img} />
-    </div>
+    <>
+      <div className="bg-[#f0f0f0] h-auto w-full font-mona mb-[65vh] z-1000">
+        <Nav />
+        <Page_1 />
+        <Page_2 />
+        <Page_3 page3={page3} />
+        <Page_4 />
+        <MarqueLogo />
+        <Page_5 />
+        <Page_6 />
+        <Page_7 />
+        <Page_8 />
+        <Page_3 page3={page8img} />
+        <Page_9 />
+      </div>
+      <div className="-z-1 h-[65vh] w-full font-mona fixed bottom-0 left-0 bg-[#272727]">
+        <Page_10 />
+        <FooterMarque />
+      </div>
+    </>
   );
 }
 

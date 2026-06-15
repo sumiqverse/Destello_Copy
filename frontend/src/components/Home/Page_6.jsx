@@ -85,7 +85,7 @@ const Page_6 = () => {
         style={{
           gridTemplateColumns: "1fr 2fr",
         }}
-        className="sticky top-[-27%] w-full h-[126vh] p-5 grid overflow-hidden"
+        className="sticky top-[-27%] w-full h-[126vh] p-5 grid overflow-hidden z-30"
       >
         <div className="h-full flex justify-center items-center">
           <div className="flex flex-col items-center gap-4 mt-[20vh]">

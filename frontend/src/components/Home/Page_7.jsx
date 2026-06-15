@@ -6,7 +6,7 @@ import Page72 from '../../assets/images/Page72.avif'
 
 const Page_7 = () => {
   return (
-    <div className="min-h-screen w-full bg-[#f0f0f0] flex items-center flex-col px-8">
+    <div className="min-h-screen w-full bg-[#f0f0f0] flex items-center flex-col px-8 z-30">
       <hr className=" text-[#d4d1d1] w-full mt-20 " />
       <div className="w-full h-[5vh] mt-4 flex justify-between">
         <h2>Why Choose us</h2>
