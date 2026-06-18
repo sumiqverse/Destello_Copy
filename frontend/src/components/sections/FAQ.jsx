@@ -1,7 +1,8 @@
 import { useState } from "react";
-import arrorBlack from "../../assets/svg/arrowblack.svg";
-import Page9 from "../../assets/images/Page9.avif";
+import arrowBlack from "../../assets/svg/arrowblack.svg";
+import FAQ_Image from "../../assets/images/Page9.avif";
 import { motion, useScroll, AnimatePresence } from "motion/react";
+import ImageScrollAnimation from "../layout/ImageScrollAnimation";
 
 const Page_9 = () => {
   const faqData = [
@@ -41,7 +42,6 @@ const Page_9 = () => {
 
   let faqToggle = (id) => {
     setOpenId(openId === id ? null : id);
-    console.log(openId)
   }
 
   return (
@@ -53,20 +53,20 @@ const Page_9 = () => {
         <h1 className="flex items-center gap-2 absolute right-0 bottom-9 text-xl underline">
           Contact us
           <span>
-            <img className="h-3 w-3 -rotate-45" src={arrorBlack} alt="" />
+            <img className="h-3 w-3 -rotate-45" src={arrowBlack} alt="" />
           </span>
         </h1>
       </div>
       <hr className="w-full text-[#D1D1D1] " />
       <div className="min-h-[70vh] w-full py-8 flex">
         <div className="w-[50%] flex flex-col gap-4">
-          <div className="rounded-2xl w-[40%] h-[60%] overflow-hidden">
-            <img
-              className="h-full w-full object-cover object-center"
-              src={Page9}
-              alt=""
-            />
-          </div>
+          
+          <ImageScrollAnimation
+            image={FAQ_Image}
+            isScaleAnimation={false}
+            isY_Animation={true}
+            className={"rounded-2xl w-[40%] h-[60%] overflow-hidden"}
+          />
           <div className=" h-[27%] w-[37%]">
             <h1>
               Got questions? We’ve gathered the most common answers to help you
@@ -122,7 +122,7 @@ const Page_9 = () => {
                         height: 0,
                       }}
                       transition={{
-                        duration : 0.3,
+                        duration: 0.3,
                       }}
                     >
                       {item.answer}

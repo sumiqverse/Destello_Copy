@@ -6,10 +6,7 @@ import Page6_2 from "../../assets/images/Page6_2.avif";
 import Page6_3 from "../../assets/images/Page6_3.avif";
 import Page6_4 from "../../assets/images/Page6_4.avif";
 
-
-
-const Page_6 = () => {
-  const page6Details = [
+const page6Details = [
     {
       Sr: "1",
       title: "Spark the Vision",
@@ -40,8 +37,23 @@ const Page_6 = () => {
     },
   ];
 
-  
+const textVariants = {
+  initial: { opacity: 0, y: 20, filter: "blur(4px)" },
+  animate: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.6, ease: "easeOut", delay },
+  }),
+  exit: {
+    opacity: 0,
+    y: -20,
+    filter: "blur(4px)",
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
 
+const Page_6 = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef(null);
 

@@ -64,34 +64,6 @@ const expertiseDetails = [
   },
 ]
 
-const Page_5 = () => {
-  const [currentSubImage, setCurrentSubImage] = useState(0);
-  const intervalRef = useRef(null);
-  const isAnimate = useRef(false)
-
-  const slideShow = () => {
-    if(isAnimate.current) return;
-    isAnimate.current = true;
-    intervalRef.current = setInterval(() => {
-      setCurrentSubImage((prevIndex) => (prevIndex + 1) % subImages.length);
-    },350)
-
-  }
-  const stopSlideShow = () => {
-    isAnimate.current = false;
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
-  }
-
-  useEffect(() => {
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    }
-  }, []);
   const ExpertiseCard = ({ title, description, img, gridArea, cardCount }) => {
     return (
       <motion.div
@@ -128,6 +100,36 @@ const Page_5 = () => {
       </motion.div>
     );
   }
+
+const Page_5 = () => {
+  const [currentSubImage, setCurrentSubImage] = useState(0);
+  const intervalRef = useRef(null);
+  const isAnimate = useRef(false)
+
+  const slideShow = () => {
+    if(isAnimate.current) return;
+    isAnimate.current = true;
+    intervalRef.current = setInterval(() => {
+      setCurrentSubImage((prevIndex) => (prevIndex + 1) % subImages.length);
+    },350)
+
+  }
+  const stopSlideShow = () => {
+    isAnimate.current = false;
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  }
+
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    }
+  }, []);
+
   return (
     <div className="min-w-full min-h-screen bg-[#272727] relative flex flex-col items-center py-25 ">
       <img

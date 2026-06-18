@@ -1,4 +1,3 @@
-import React from 'react'
 import ArrBlack from '../../assets/svg/arrowblack.svg'
 import Page71 from '../../assets/images/Page71.avif'
 import Page72 from '../../assets/images/Page72.avif'

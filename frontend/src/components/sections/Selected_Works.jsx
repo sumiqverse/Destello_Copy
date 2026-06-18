@@ -1,4 +1,4 @@
-import Page_4Cards from './Page_4Cards'
+import Page_4Cards from '../common/Work_Card'
 import Page4img1 from "../../assets/images/Page4img1.avif";
 import Page4img2 from "../../assets/images/Page4img2.avif";
 import Page4img3 from "../../assets/images/Page4img3.avif";
@@ -81,8 +81,8 @@ const Page_4 = () => {
   
   return (
     <div className="min-w-full flex flex-col items-center h-auto py-24 bg-[#f0f0f0] relative">
-      <div className=" w-full h-70 relative text-[#262626]">
-        <h1 className="text-7xl absolute font-[450] bottom-12 left-10">
+      <div className=" w-full h-[14vh] relative text-[#262626]">
+        <h1 className="text-7xl absolute font-[29vh] bottom-12 left-10">
           Selected works
         </h1>
         <button className='absolute bottom-12 right-10 text-2xl'>See all works</button>

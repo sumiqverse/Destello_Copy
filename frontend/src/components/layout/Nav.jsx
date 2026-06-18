@@ -15,7 +15,7 @@ const underlineVariants = {
 
 const AnimatedNavLink = ({ to, label }) => (
   <motion.li
-    className="flex flex-col h-9 w-20 overflow-hidden relative"
+    className="flex flex-col h-7 overflow-hidden w-20 relative"
     initial="initial"
     whileHover="hover"
   >
@@ -30,7 +30,7 @@ const AnimatedNavLink = ({ to, label }) => (
     <motion.div
       variants={underlineVariants}
       transition={{ duration: 0.3 }}
-      className="w-full bg-[#f0f0f0] h-1 rounded-full absolute bottom-0"
+      className="w-full bg-[#f0f0f0] h-px rounded-full absolute bottom-0"
     />
   </motion.li>
 );
@@ -39,13 +39,12 @@ const AnimatedNavLink = ({ to, label }) => (
 function Nav() {
   const navLinks = [
     { to: "/", label: "Home" },
-    { to: "/about", label: "About" },
     { to: "/works", label: "Works" },
     { to: "/expertise", label: "Expertise" },
-    { to: "/journals", label: "Journals" },
+    { to: "/process", label: "Process" },
+    { to: "/feedback", label: "Feedback" },
   ];
 
-  // ref for the nav element and scroll-direction state
   const navRef = useRef(null);
   const [direction, setDirection] = useState("up");
   const { scrollYProgress } = useScroll();
@@ -66,7 +65,7 @@ function Nav() {
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: direction === "down" ? -70 : 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
-      className="flex fixed justify-between items-center p-8 h-3.5 bg-[#262626] text-white backdrop-blur-xs z-50 font-bold text-lg w-full"
+      className="flex fixed justify-between items-center p-8 h-3.5 bg-[#262626] text-white backdrop-blur-xs z-50 text-lg w-full"
     >
       <div>
         <h1 className="cursor-pointer hover:opacity-80 transition-opacity">
